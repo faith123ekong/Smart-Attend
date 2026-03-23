@@ -1,6 +1,6 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 import ErrorBoundary from './components/ErrorBoundary';
 import { initializeApp } from "firebase/app";
@@ -13,9 +13,15 @@ const firebaseConfig = {
   appId: "1:972671343191:web:6b03e235da4304708b2112"
   };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
+
+declare global {
+  interface Window {
+    login: () => Promise<void>;
+  }
+}
 
 // Expose login to global scope for HTML button
 window.login = () => signInWithPopup(auth, provider)

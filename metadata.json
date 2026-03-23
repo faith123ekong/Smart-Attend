@@ -1,0 +1,5 @@
+{
+  "name": "Attendance App",
+  "description": "A secure attendance management system",
+  "requestFramePermissions": ["camera", "geolocation"]
+}
